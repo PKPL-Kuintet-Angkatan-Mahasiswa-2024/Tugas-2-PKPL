@@ -1,4 +1,6 @@
 django
+django-allauth
+PyJWT
 gunicorn
 whitenoise
 psycopg2-binary
