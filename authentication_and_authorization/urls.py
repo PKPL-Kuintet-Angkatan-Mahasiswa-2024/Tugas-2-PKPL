@@ -26,5 +26,5 @@ urlpatterns = [
 
     path('', TemplateView.as_view(template_name='index.html')),
     path('accounts/', include('allauth.urls')),
-    path('logout', LogoutView.as_view())
+    path('logout/', LogoutView.as_view(next_page='/', redirect_field_name=None), name='logout')
 ]
