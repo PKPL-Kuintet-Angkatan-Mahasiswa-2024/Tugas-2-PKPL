@@ -47,12 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     'auth_app',
+    'biodata_kelompok',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
 
+    'config_models',
 ]
 
 MIDDLEWARE = [
@@ -115,6 +117,9 @@ else:
         }
     }
 
+
+AUTH_USER_MODEL = 'auth.User'
+
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
 
@@ -172,6 +177,10 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+GROUP_MEMBER_EMAILS = [
+    'evan052006@gmail.com',
+]
 
 
 SITE_ID = 2
