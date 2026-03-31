@@ -4,13 +4,22 @@ from django.conf import settings
 from biodata_kelompok.models import Biodata
 from biodata_kelompok.forms import BiodataForm
 from django.contrib import messages
+from allauth.socialaccount.models import SocialAccount
 
 def is_authorized(user):
     if not user.is_authenticated:
         return False
 
-    allowed_emails = getattr(settings, 'GROUP_MEMBER_EMAILS', [])
-    return user.email in allowed_emails
+    email = (user.email or "").lower()
+    allowed_emails = [e.lower() for e in getattr(settings, 'GROUP_MEMBER_EMAILS', [])]
+    is_group_member = email in allowed_emails
+
+    has_google_login = SocialAccount.objects.filter(
+        user=user,
+        provider="google"
+    ).exists()
+
+    return is_group_member and has_google_login
 
 
 def show_biodata_homepage(request):
