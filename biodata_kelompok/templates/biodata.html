@@ -16,11 +16,29 @@
     />
   </head>
   <body>
+
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+
     {% if user.is_authenticated %}
-        <p> Welcome. You are logged in as {{user.username}} </p>
+      <p> Welcome. You are logged in as {{user.username}} </p>
+
+      {% if is_authorized %}
+          <p><strong>Status:</strong> Authorized member</p>
+          <a href="{% url 'biodata:edit_biodata' %}" class="btn btn-primary mb-3">Edit My Biodata</a>
+      {% else %}
+          <p><strong>Status:</strong> Read-only user</p>
+      {% endif %}
+
     {% else %}
     <a href="{% provider_login_url 'google' %}">Login with Google</a>
     {% endif %}
+
     <div class="container mt-4">
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for biodata in biodata_list %}
