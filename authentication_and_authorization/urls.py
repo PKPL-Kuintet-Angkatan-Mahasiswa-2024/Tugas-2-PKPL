@@ -24,7 +24,9 @@ urlpatterns = [
 
     path('app/',include('auth_app.urls')),
 
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', include('biodata_kelompok.urls')),
+
+    path('auth_test', TemplateView.as_view(template_name='index.html')),
     path('accounts/', include('allauth.urls')),
     path('logout', LogoutView.as_view())
 ]
