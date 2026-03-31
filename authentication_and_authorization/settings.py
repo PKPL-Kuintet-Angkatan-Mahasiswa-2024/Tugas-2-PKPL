@@ -180,6 +180,10 @@ SOCIALACCOUNT_PROVIDERS = {
 
 GROUP_MEMBER_EMAILS = [
     'evan052006@gmail.com',
+    'karla.raswanda@gmail.com',
+    'joshchristmasrl25@gmail.com',
+    'rajafadhlurrohman@gmail.com',
+    'raidakhoyyara247@gmail.com',
 ]
 
 
