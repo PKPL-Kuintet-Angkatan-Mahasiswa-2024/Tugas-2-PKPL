@@ -17,7 +17,15 @@
   </head>
   <body>
     {% if user.is_authenticated %}
-        <p> Welcome. You are logged in as {{user.username}} </p>
+      <p> Welcome. You are logged in as {{user.username}} </p>
+
+      {% if is_authorized %}
+          <p><strong>Status:</strong> Authorized member</p>
+          <a href="{% url 'biodata:edit_biodata' %}" class="btn btn-primary mb-3">Edit My Biodata</a>
+      {% else %}
+          <p><strong>Status:</strong> Read-only user</p>
+      {% endif %}
+
     {% else %}
     <a href="{% provider_login_url 'google' %}">Login with Google</a>
     {% endif %}
