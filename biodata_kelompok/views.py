@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from biodata_kelompok.models import Biodata
 from biodata_kelompok.forms import BiodataForm
-
+from django.contrib import messages
 
 def is_authorized(user):
     if not user.is_authenticated:
@@ -24,6 +24,7 @@ def show_biodata_homepage(request):
 @login_required
 def edit_biodata(request):
     if not is_authorized(request.user):
+        messages.error(request, "You are not authorized to edit biodata.")
         return redirect('biodata:homepage')
 
     biodata, _ = Biodata.objects.get_or_create(user=request.user)
