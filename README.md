@@ -58,7 +58,14 @@ python manage.py runserver
 ## 🔐 2. Mekanisme Autentikasi & Otorisasi
 
 ### Autentikasi
-[isi di sini]
+Mekanisme autentikasi Google OAuth 2.0 memungkinkan aplikasi pihak ketiga mengakses data pengguna (email/profil) secara aman tanpa harus mengetahui kata sandi. Prosesnya melibatkan pengguna, aplikasi (klien), dan server Google, dimulai dari permintaan izin (consent), pertukaran kode otorisasi dengan akses token, hingga validasi token untuk mendapatkan data pengguna. 
+Alur Kerja Utama Google OAuth 2.0:
+- **Konfigurasi Kredensial**: Developer (kami) membuat proyek di Google Cloud Console, mengatur OAuth consent screen, dan mendapatkan Client ID serta Client Secret.
+- **Permintaan Otorisasi**: Aplikasi mengarahkan pengguna ke halaman login Google. URL permintaan menyertakan Client ID, scope (data yang diminta, misal: email/profil pengguna), dan redirect URI.
+- **Persetujuan Pengguna**: Pengguna login ke akun Google dan memberikan izin kepada aplikasi untuk mengakses data (tampilan consent screen).
+- **Pertukaran Kode (Authorization Code)**: Setelah disetujui, Google mengalihkan kembali ke redirect URI aplikasi dengan membawa authorization code.
+- **Penukaran Token**: Aplikasi mengirimkan authorization code, Client ID, dan Client Secret ke server Google untuk ditukar dengan Access Token (dan Refresh Token jika perlu).
+- **Akses Data & Login**: Aplikasi menggunakan Access Token untuk mengambil data profil pengguna dari API Google, kemudian membuat sesi atau mendaftarkan pengguna di sistem internal.
 
 ### Otorisasi
 [isi di sini]
