@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}Kuintet Angkatan Mahasiswa 2024{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  {% if theme %}
+  <style>
+    :root {
+      --accent: {{ theme.primary_color }};
+      --body-font: {{ theme.font_family }};
+    }
+  </style>
+  {% endif %}
+</head>
+<body>
+
+  <nav class="navbar">
+    <span class="navbar-brand">PKPL · TK 2</span>
+    <div class="navbar-actions">
+      {% if user.is_authenticated %}
+        <span class="navbar-email">{{ user.email }}</span>
+        {% if is_authorized %}
+          <a href="{% url 'biodata:edit_tampilan' %}" class="btn btn-accent">Edit Tampilan</a>
+        {% endif %}
+        <a href="{% url 'account_logout' %}" class="btn btn-outline">Logout</a>
+      {% else %}
+        <a href="{% url 'google_login' %}" class="btn btn-accent">Login Google</a>
+      {% endif %}
+    </div>
+  </nav>
+
+  <main class="main-content">
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="message message-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>Pengantar Keamanan Perangkat Lunak &mdash; Genap 2025/2026</p>
+  </footer>
+
+</body>
+</html>

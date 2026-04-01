@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Tampilan &mdash; Kuintet AM 2024{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1 class="hero-title">Edit Tampilan Website</h1>
+  <p class="hero-subtitle">Perubahan berlaku global untuk semua pengunjung</p>
+</section>
+
+{% if theme %}
+<div class="info-banner">
+  Tema aktif &mdash; warna: <strong>{{ theme.primary_color }}</strong> |
+  font: <strong>{{ theme.font_family }}</strong>
+</div>
+{% endif %}
+
+<div class="form-card">
+  <form method="post" action="{% url 'biodata:edit_tampilan' %}">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label class="form-label" for="primary_color">Tema Website</label>
+      <select name="primary_color" id="primary_color" class="form-select">
+        {% for value, label in color_choices %}
+          <option value="{{ value }}"
+            {% if theme and theme.primary_color == value %}selected{% endif %}>
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+      <p class="form-hint">Pilih preset tema untuk mengganti warna seluruh halaman</p>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label" for="font_family">Font</label>
+      <select name="font_family" id="font_family" class="form-select">
+        {% for value, label in font_choices %}
+          <option value="{{ value }}"
+            {% if theme and theme.font_family == value %}selected{% endif %}>
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-accent">Simpan Perubahan</button>
+    <a href="{% url 'biodata:homepage' %}" class="btn btn-outline">Batal</a>
+  </form>
+</div>
+{% endblock %}

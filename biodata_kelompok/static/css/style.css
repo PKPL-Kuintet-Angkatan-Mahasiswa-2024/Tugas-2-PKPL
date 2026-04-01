@@ -1,0 +1,266 @@
+/* ─── CSS Variables ──────────────────────────────────────────────────────── */
+:root {
+  --accent: #0061ff;
+  --accent-light: #e6f0ff;
+  --accent-dark: #0046b8;
+  
+  --body-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --bg: #f4f7fa;
+  --surface: #FFFFFF;
+  --border: rgba(0, 97, 255, 0.1);
+  
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px; 
+  --radius-card: 16px 4px 16px 4px; 
+}
+
+/* ─── Reset ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--body-font);
+  background: var(--bg);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ─── Navbar ─────────────────────────────────────────────────────────────── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 56px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar-brand {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-email {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s;
+  text-decoration: none;
+}
+.btn:hover { opacity: 0.82; text-decoration: none; }
+.btn:active { opacity: 0.65; }
+
+.btn-accent {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+
+/* ─── Main layout ────────────────────────────────────────────────────────── */
+.main-content {
+  flex: 1;
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ─── Messages ───────────────────────────────────────────────────────────── */
+.messages { margin-bottom: 1.5rem; }
+
+.message {
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  margin-bottom: 8px;
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+}
+.message.error {
+  background: #FCEBEB;
+  color: #791F1F;
+  border-color: #E24B4A;
+}
+
+/* ─── Hero ───────────────────────────────────────────────────────────────── */
+.hero {
+  margin-bottom: 3rem;
+  text-align: center; /* Membuat teks ke tengah */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-title {
+  font-size: 32px; /* Sedikit lebih besar */
+  font-weight: 700; /* Lebih tebal */
+  color: var(--accent-dark);
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 500px;
+}
+
+/* ─── Info banner ────────────────────────────────────────────────────────── */
+.info-banner {
+  background: var(--accent-light);
+  color: var(--accent-dark);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  padding: 10px 16px;
+  font-size: 13px;
+  margin-bottom: 1.5rem;
+}
+
+.info-banner--neutral {
+  background: #F1EFE8;
+  color: #444441;
+  border-color: #D3D1C7;
+}
+
+/* ─── Members grid ───────────────────────────────────────────────────────── */
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+/* ─── Member card ────────────────────────────────────────────────────────── */
+.member-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.member-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px); 
+  box-shadow: 0 12px 24px rgba(0, 97, 255, 0.1);
+  background: linear-gradient(145deg, #ffffff, #f0f5ff);
+}
+
+.member-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 18px; 
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 20px;
+  box-shadow: 0 4px 10px rgba(0, 97, 255, 0.3);
+}
+
+.member-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.member-npm {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ─── Form card ──────────────────────────────────────────────────────────── */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  max-width: 480px;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.form-select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--surface);
+  appearance: none;
+}
+
+.form-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ─── Footer ─────────────────────────────────────────────────────────────── */
+.footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .navbar { padding: 0 1rem; }
+  .main-content { padding: 1.5rem 1rem; }
+  .members-grid { grid-template-columns: 1fr; }
+  .navbar-email { display: none; }
+}

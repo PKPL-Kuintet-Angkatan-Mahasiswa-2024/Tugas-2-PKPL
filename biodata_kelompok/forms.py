@@ -1,8 +1,7 @@
 from django import forms
-from biodata_kelompok.models import Biodata
+from .models import BiodataTheme, Biodata 
 
-
-class BiodataForm(forms.ModelForm):
+class BiodataForm(forms.ModelForm): 
     class Meta:
-        model = Biodata
-        fields = ['bio']
+        model = BiodataTheme
+        fields = ['primary_color', 'font_family']
