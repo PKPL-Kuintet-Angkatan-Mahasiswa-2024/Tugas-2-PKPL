@@ -24,7 +24,9 @@
         <span class="navbar-email">{{ user.email }}</span>
         {% if is_authorized %}
           <a href="{% url 'biodata:edit_tampilan' %}" class="btn btn-accent">Edit Tampilan</a>
+          <a href="{% url 'biodata:edit_biodata' %}" class="btn btn-accent">Edit Biodata</a>
         {% endif %}
+
         <a href="{% url 'account_logout' %}" class="btn btn-outline">Logout</a>
       {% else %}
         <a href="{% url 'google_login' %}" class="btn btn-accent">Login Google</a>
