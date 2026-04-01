@@ -91,7 +91,7 @@ biodata_kelompok/
 | Backend | Django 5.x |
 | Auth | django-allauth (Google OAuth 2.0) |
 | Database | SQLite (Development) |
-| Styling | CSS3 dengan CSS Variables & Grid Layout |
+| Styling | CSS3 dengan CSS Variables dan Grid Layout |
 | Settings | django-config-models (tema global) |
 
 ---
