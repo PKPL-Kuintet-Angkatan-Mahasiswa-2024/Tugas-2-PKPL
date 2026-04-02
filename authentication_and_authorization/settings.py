@@ -117,7 +117,7 @@ else:
     }
 
 
-AUTH_USER_MODEL = "auth.User"
+AUTH_USER_MODEL = "auth_app.AppUser"
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
