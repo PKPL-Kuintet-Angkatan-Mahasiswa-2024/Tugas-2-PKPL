@@ -1,11 +1,11 @@
-# 🌐 Website Biodata Kelompok — Kuintet AM 2024 (Django)
+# 🌐 Website Biodata Kelompok — Kuintet Angkatan Mahasiswa 2024 (Django)
 
 Website ini dikembangkan untuk memenuhi tugas mata kuliah **Pengantar Keamanan Perangkat Lunak (PKPL)**.
 Fokus utama proyek ini adalah implementasi mekanisme **Autentikasi dan Otorisasi** yang aman.
 
 ---
 
-## 👥 Anggota Kelompok
+## Anggota Kelompok
 
 | Nama | NPM | Peran |
 |------|-----|-------|
@@ -17,45 +17,16 @@ Fokus utama proyek ini adalah implementasi mekanisme **Autentikasi dan Otorisasi
 
 ---
 
-## 🚀 1. Cara Menjalankan Proyek
+## 1. Cara Menjalankan Proyek
 
-### Prasyarat
-- 
-- 
-
-### Langkah Instalasi
-
-**1. Clone & Setup Virtual Environment**
+### Link Deployment
 ```bash
-git clone https://github.com/PKPL-Kuintet-Angkatan-Mahasiswa-2024/Tugas-2-PKPL
-cd Tugas-2-PKPL
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-```
-
-**2. Instal Dependensi**
-```bash
-pip install -r requirements.txt
-```
-
-**3. Konfigurasi Environment**
-
-Buat file `.env` dan isi dengan kredensial Google OAuth kamu:
-```env
-GOOGLE_OAUTH_CLIENT_ID=your_client_id
-GOOGLE_OAUTH_SECRET=your_client_secret
-GROUP_MEMBER_EMAILS=raida.khoyyara@ui.ac.id,karla.ameera@ui.ac.id,...
-```
-
-**4. Migrasi Database & Jalankan Server**
-```bash
-python manage.py migrate
-python manage.py runserver
+https://tugas-2-pkpl.fly.dev/
 ```
 
 ---
 
-## 🔐 2. Mekanisme Autentikasi & Otorisasi
+## 2. Mekanisme Autentikasi & Otorisasi
 
 ### Autentikasi
 Mekanisme autentikasi Google OAuth 2.0 memungkinkan aplikasi pihak ketiga mengakses data pengguna (email/profil) secara aman tanpa harus mengetahui kata sandi. Prosesnya melibatkan pengguna, aplikasi (klien), dan server Google, dimulai dari permintaan izin (consent), pertukaran kode otorisasi dengan akses token, hingga validasi token untuk mendapatkan data pengguna. 
@@ -68,17 +39,28 @@ Alur Kerja Utama Google OAuth 2.0:
 - **Akses Data & Login**: Aplikasi menggunakan Access Token untuk mengambil data profil pengguna dari API Google, kemudian membuat sesi atau mendaftarkan pengguna di sistem internal.
 
 ### Otorisasi
-[isi di sini]
+Setelah pengguna berhasil login, sistem melakukan pengecekan otorisasi menggunakan fungsi `is_authorized`. Mekanisme ini terdiri dari dua kondisi utama:
+- **Email pengguna harus terdaftar** dalam daftar anggota kelompok (GROUP_MEMBER_EMAILS di settings).
+- **Pengguna harus login melalui Google**, yang divalidasi melalui keberadaan `SocialAccount` dengan provider `"google"` dari `django-allauth`.
+
+Jika kedua kondisi terpenuhi, maka pengguna dianggap sebagai **authorized member** dan memiliki akses untuk mengedit biodata miliknya. Sebaliknya, pengguna yang tidak memenuhi syarat hanya memiliki akses **read-only**.
+
+Pada sisi implementasi:
+
+Endpoint edit (`edit_biodata`) dilindungi dengan decorator `@login_required`.
+Terdapat validasi tambahan menggunakan `is_authorized`; jika gagal, pengguna akan diarahkan kembali ke halaman utama dengan pesan error.
+Pengguna hanya dapat mengedit biodata miliknya sendiri karena adanya relasi one-to-one antara `user` dan model `Biodata`.
+
 
 ---
 
-## 🎨 3. Fitur Utama (Scope Member A)
+## 3. Fitur Utama (Scope Member A)
 
 ### Halaman Publik *(No Login)*
 Daftar biodata 5 anggota kelompok dapat diakses oleh siapa saja tanpa perlu login. Data ditampilkan secara dinamis dari `ANGGOTA_LIST` di `views.py`.
 
 ### Tema Dinamis *(CSS Variables)*
-[isi di sini]
+Setelah login kamu bisa mengedit warna tema, font, serta isi dari biodata.
 
 ### Struktur Folder Penting
 ```
@@ -91,17 +73,16 @@ biodata_kelompok/
 
 ---
 
-## 🛠️ 4. Komponen Teknologi
+## 4. Komponen Teknologi
 
 | Layer | Teknologi |
 |-------|-----------|
 | Backend | Django 5.x |
 | Auth | django-allauth (Google OAuth 2.0) |
 | Database | SQLite (Development) |
-| Styling | CSS3 dengan CSS Variables dan Grid Layout |
+| Styling | CSS3 dengan CSS Variables dan HTML5 |
 | Settings | django-config-models (tema global) |
 
 ---
 
-## 📸 5. Screenshot Aplikasi
-[isi di sini]
+
