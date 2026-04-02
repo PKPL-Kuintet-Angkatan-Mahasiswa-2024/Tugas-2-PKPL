@@ -54,13 +54,6 @@ Pengguna hanya dapat mengedit biodata miliknya sendiri karena adanya relasi one-
 
 ---
 
-## 3. Fitur Utama (Scope Member A)
-
-### Halaman Publik *(No Login)*
-Daftar biodata 5 anggota kelompok dapat diakses oleh siapa saja tanpa perlu login. Data ditampilkan secara dinamis dari `ANGGOTA_LIST` di `views.py`.
-
-### Tema Dinamis *(CSS Variables)*
-Setelah login kamu bisa mengedit warna tema, font, serta isi dari biodata.
 
 ### Struktur Folder Penting
 ```
