@@ -22,7 +22,9 @@
 
 <div class="members-grid">
   {% for anggota in anggota_list %}
-    {% include "partials/member_card.html" with anggota=anggota.biodata %}
+    {% if anggota.biodata %}
+        {% include "partials/member_card.html" with anggota=anggota.biodata %}
+    {% endif %}
   {% endfor %}
 </div>
 {% endblock %}
